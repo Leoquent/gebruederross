@@ -337,6 +337,12 @@ footer .logo-text{height:44px;width:auto;filter:brightness(0) invert(1)}
 <div class="trustbar">
   <div class="container">
     <span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)">
+        <path d="M12 2l8 4v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V6z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 12l2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>Serverstandort Deutschland
+    </span>
+    <span>
       <svg viewBox="0 0 682.667 682.667" fill="none" stroke="var(--gold)">
         <g transform="matrix(1.33333 0 0 -1.33333 0 682.667)">
           <path d="m0 0-196-81.377v-98.925C-196-308.326-118.531-423.62 0-472c118.53 48.38 196 163.674 196 291.698v98.925z" transform="translate(256 492)" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/>
@@ -677,19 +683,66 @@ footer .logo-text{height:44px;width:auto;filter:brightness(0) invert(1)}
       <p class="section-lead">Sie betreuen einen Nachlass im Großraum Stuttgart? Wir freuen uns auf ein unverbindliches Erstgespräch – gern auch direkt vor Ort am Objekt.</p>
       <div class="contact-info">
         <div class="ci"><div class="ic"><svg fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="lbl">Firmensitz</div><div class="val">Gebrüder Ross · Kriegsbergstraße 30 · 70174 Stuttgart</div></div></div>
-        <div class="ci"><div class="ic"><svg fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div><div><div class="lbl">E-Mail</div><div class="val">[E-Mail-Adresse einfügen]</div></div></div>
-        <div class="ci"><div class="ic"><svg fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><div class="lbl">Telefon</div><div class="val">[Telefonnummer einfügen]</div></div></div>
+        <div class="ci"><div class="ic"><svg fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div><div><div class="lbl">E-Mail</div><div class="val"><a href="mailto:info@gebruederross.de" style="color:inherit;text-decoration:none">info@gebruederross.de</a></div></div></div>
+        <div class="ci"><div class="ic"><svg fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><div class="lbl">Telefon</div><div class="val"><a href="tel:+4971165830800" style="color:inherit;text-decoration:none">0711 65830800</a></div></div></div>
       </div>
     </div>
     <div class="contact-card reveal">
       <h3>Nachricht senden</h3>
       <p>Wir melden uns in der Regel innerhalb eines Werktages.</p>
-      <form onsubmit="event.preventDefault();this.innerHTML='<p style=\'padding:40px 0;text-align:center;font-size:1.05rem\'>Vielen Dank für Ihre Nachricht.<br>Wir melden uns zeitnah bei Ihnen.</p>';">
-        <div class="field"><label>Name</label><input type="text" required placeholder="Ihr Name"></div>
-        <div class="field"><label>E-Mail</label><input type="email" required placeholder="ihre@email.de"></div>
-        <div class="field"><label>Ihr Anliegen</label><textarea rows="4" required placeholder="Kurze Beschreibung des Nachlasses oder Ihres Anliegens …"></textarea></div>
-        <button type="submit" class="btn">Nachricht absenden</button>
+<form id="kontaktForm">
+        <div class="field"><label for="f-name">Name</label><input id="f-name" name="Name" type="text" required placeholder="Ihr Name" autocomplete="name"></div>
+        <div class="field"><label for="f-mail">E-Mail</label><input id="f-mail" name="E-Mail" type="email" required placeholder="ihre@email.de" autocomplete="email"></div>
+        <div class="field"><label for="f-tel">Telefon <span style="font-weight:400;color:var(--muted)">für Rückfragen, freiwillig</span></label><input id="f-tel" name="Telefon" type="tel" placeholder="z. B. 0711 12345678" autocomplete="tel"></div>
+        <div class="field"><label for="f-msg">Ihr Anliegen</label><textarea id="f-msg" name="Nachricht" rows="4" required placeholder="Kurze Beschreibung des Nachlasses oder Ihres Anliegens …"></textarea></div>
+        <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="f-firma">Firma</label><input id="f-firma" name="firma" type="text" tabindex="-1" autocomplete="off"></div>
+        <button type="submit" class="btn" id="f-submit">Nachricht absenden</button>
+        <p id="f-status" role="status" style="margin-top:14px;font-size:.88rem;line-height:1.5"></p>
       </form>
+      <script>
+      // Kontaktformular: sendet an api.lqnt.de, zeigt bei Fehlern sofort Telefon und Mail.
+      (function () {
+        var form = document.getElementById('kontaktForm');
+        if (!form) { return; }
+        var status = document.getElementById('f-status');
+        var btn = document.getElementById('f-submit');
+        var ENDPUNKT = 'https://api.lqnt.de/lead';
+        var AUSWEG = 'Das hat leider nicht geklappt. Rufen Sie uns an unter '
+          + '<a href="tel:+4971165830800" style="color:var(--navy);font-weight:600">0711 65830800</a>'
+          + ' oder schreiben Sie an '
+          + '<a href="mailto:info@gebruederross.de" style="color:var(--navy);font-weight:600">info@gebruederross.de</a>.';
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (btn.disabled) { return; }
+          var daten = {};
+          new FormData(form).forEach(function (wert, name) { daten[name] = wert; });
+          btn.disabled = true;
+          btn.textContent = 'Wird gesendet …';
+          status.textContent = '';
+          var abbruch = setTimeout(function () { fehler(); }, 20000);
+          fetch(ENDPUNKT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(daten)
+          }).then(function (antwort) {
+            if (!antwort.ok) { throw new Error('HTTP ' + antwort.status); }
+            return antwort.json();
+          }).then(function () {
+            clearTimeout(abbruch);
+            form.innerHTML = '<p style="padding:28px 0;text-align:center;font-size:1.05rem">'
+              + 'Vielen Dank für Ihre Nachricht.<br>Wir melden uns in der Regel innerhalb eines Werktages.</p>';
+          }).catch(function () {
+            clearTimeout(abbruch);
+            fehler();
+          });
+          function fehler() {
+            btn.disabled = false;
+            btn.textContent = 'Nachricht absenden';
+            status.innerHTML = AUSWEG;
+          }
+        });
+      })();
+      </script>
     </div>
   </div>
 </section>
