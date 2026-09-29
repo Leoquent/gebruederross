@@ -24,6 +24,7 @@
 <meta name="twitter:description" content="Ihr verlängerter Arm vor Ort. Bei jedem Nachlass.">
 <meta name="twitter:image" content="og-image.png">
 
+<script>document.documentElement.classList.add('js');</script>
 <style>
 :root{
   --navy:#0e1f33;
@@ -215,6 +216,25 @@ footer .logo-icon{height:48px;width:auto;filter:brightness(0) invert(1)}
 footer .logo-divider{width:1px;height:48px;background-color:rgba(255,255,255,0.15);margin:0 4px}
 footer .logo-text{height:44px;width:auto;filter:brightness(0) invert(1)}
 
+/* ---------- Mobile-Aufklapper (nur < 640px sichtbar) ---------- */
+/* Die Klasse .js setzt ein Skript im Kopf. Ohne JavaScript bleibt alles offen
+   (open steht im Markup) – dann verschwindet nichts, es gibt nur keinen Aufklapper. */
+html.js .fold>summary{display:none}
+html.js .fold>summary::-webkit-details-marker{display:none}
+html.js .fold>summary::marker{content:""}
+@media(max-width:640px){
+  html.js .fold>summary{display:flex;align-items:center;gap:10px;cursor:pointer;list-style:none;
+    line-height:1.3;background:var(--white);border:1px solid var(--line);border-radius:100px;
+    padding:13px 18px;margin-bottom:18px;font-weight:600;font-size:.88rem;color:var(--navy);
+    box-shadow:0 4px 18px rgba(14,31,51,.06)}
+  html.js .fold>summary::before{content:"◆";color:var(--gold);font-size:.55rem;flex-shrink:0}
+  html.js .fold>summary::after{content:"▾";color:var(--gold);font-size:1rem;margin-left:auto;transition:transform .25s}
+  html.js .fold[open]>summary::after{transform:rotate(180deg)}
+  html.js .fold.fold-dark>summary{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:var(--white);box-shadow:none}
+  /* Innerhalb der Aufklapper keine Einblend-Animation: der Inhalt muss beim Öffnen
+     sofort sichtbar sein, unabhängig davon, ob die Animation anläuft. */
+  .fold .reveal{opacity:1!important;transform:none!important;transition:none!important}
+}
 /* ---------- Reveal ---------- */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
 .reveal.visible{opacity:1;transform:none}
@@ -560,12 +580,15 @@ footer .logo-text{height:44px;width:auto;filter:brightness(0) invert(1)}
       <h2 class="section-title">Ein klarer Ablauf. Ein Ansprechpartner.</h2>
       <p class="section-lead">Von der ersten Begehung bis zur Schlüsselübergabe: strukturiert, transparent und lückenlos dokumentiert.</p>
     </div>
-    <div class="steps">
+    <details class="fold" open>
+      <summary>Alle 4 Schritte anzeigen</summary>
+      <div class="steps">
       <div class="step reveal"><h3>Sicherung &amp; Erstaufnahme</h3><p>Objektsicherung, umfassende Foto- und Videodokumentation vor Beginn aller Maßnahmen sowie Sicherung von Wertgegenständen und Dokumenten.</p></div>
       <div class="step reveal"><h3>Inventarisierung &amp; Bewertung</h3><p>Strukturierte Erfassung des Nachlasses, professionelle Bewertung von Antiquitäten, Sammlungen und Kunst inklusive digitaler Vermögenswertsuche.</p></div>
       <div class="step reveal"><h3>Verwertung</h3><p>Koordination über Auktionshäuser, Fachhändler und Sammler oder hauseigene Verwertung im An- und Verkauf mit lückenloser Nachweisführung sämtlicher Verkaufsprozesse.</p></div>
       <div class="step reveal"><h3>Räumung &amp; Übergabe</h3><p>Komplette Räumung, Grundreinigung, Objektaufbereitung und dokumentierte Schlüsselübergabe, besenrein bzw. übergabefähig.</p></div>
-    </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -584,7 +607,9 @@ footer .logo-text{height:44px;width:auto;filter:brightness(0) invert(1)}
       <h2 class="section-title">Alles aus einer Hand.</h2>
       <p class="section-lead">Die komplette Vor-Ort-Abwicklung als verlängerter Arm des Nachlasspflegers, von der Sicherung bis zur Übergabe.</p>
     </div>
-    <div class="grid">
+    <details class="fold" open>
+      <summary>Alle 19 Leistungen anzeigen</summary>
+      <div class="grid">
       <div class="svc featured reveal">
         <span class="usp-tag">Kostenlos vorab</span>
         <h3>Mietvertragsprüfung</h3>
@@ -608,12 +633,15 @@ footer .logo-text{height:44px;width:auto;filter:brightness(0) invert(1)}
       <div class="svc reveal"><h3>Transport &amp; Einlagerung</h3><p>Versicherter Transport zum Wunschort sowie bei Bedarf Einlagerung von Nachlässen.</p></div>
       <div class="svc reveal"><h3>Komplette Vor-Ort-Abwicklung</h3><p>Übernahme sämtlicher operativer Aufgaben vor Ort als verlängerter Arm des Nachlasspflegers.</p></div>
       <div class="svc reveal"><h3>Koordination weiterer Dienstleister</h3><p>Vermittlung und Steuerung zusätzlicher Fachbetriebe und Spezialisten bei Bedarf.</p></div>
-    </div>
+      </div>
+    </details>
 
     <div class="addons reveal">
       <span class="tag">Zusatzleistungen</span>
       <h3>Für maximale Transparenz und Sicherheit</h3>
-      <div class="addons-grid">
+      <details class="fold fold-dark" open>
+        <summary>Zusatzleistungen anzeigen</summary>
+        <div class="addons-grid">
         <div class="addon">
           <div class="addon-icon">
             <svg viewBox="0 0 682.667 682.667" fill="none" stroke="var(--gold)">
@@ -658,7 +686,8 @@ footer .logo-text{height:44px;width:auto;filter:brightness(0) invert(1)}
           <h4>Erweiterte Beweissicherung</h4>
           <p>Zeitgestempelte Dokumentation aller Maßnahmen für maximale Nachvollziehbarkeit bei werthaltigen oder streitigen Nachlässen.</p>
         </div>
-      </div>
+        </div>
+      </details>
     </div>
   </div>
 </section>
@@ -677,7 +706,9 @@ footer .logo-text{height:44px;width:auto;filter:brightness(0) invert(1)}
       
       <div style="margin-top:32px"><a href="#kontakt" class="btn btn-gold">Erstgespräch vereinbaren</a></div>
     </div>
-    <div class="benefit-list">
+    <details class="fold" open>
+      <summary>Alle Vorteile anzeigen</summary>
+      <div class="benefit-list">
       <div class="benefit reveal"><div class="check"><svg fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><div><h3>Maximale operative Entlastung</h3><p>Operative Aufgaben vor Ort geben Sie komplett ab – das schafft Ihnen wertvollen Freiraum für Ihre wesentlichen Kernaufgaben.</p></div></div>
       <div class="benefit reveal"><div class="check"><svg fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><div><h3>Zentraler Koordinator</h3><p>Wir steuern alle Gewerke, Räumungsteams und Verwertungspartner – Sie haben nur einen Ansprechpartner.</p></div></div>
       <div class="benefit reveal"><div class="check"><svg fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><div><h3>Beschleunigte Abwicklung</h3><p>Strukturierte Abläufe und kurze Kommunikationswege verkürzen die Verfahrensdauer spürbar.</p></div></div>
@@ -685,7 +716,8 @@ footer .logo-text{height:44px;width:auto;filter:brightness(0) invert(1)}
       <div class="benefit reveal"><div class="check"><svg fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><div><h3>Liquiditätsschonung</h3><p>Durch unsere optionale Vorfinanzierung belasten die Kosten das Nachlasskonto erst bei Liquidität.</p></div></div>
       <div class="benefit reveal"><div class="check"><svg fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><div><h3>Direkte Inhaberbetreuung</h3><p>Sie arbeiten direkt mit Simon Bartosch und Raphael Uhland zusammen – ohne wechselnde Zuständigkeiten.</p></div></div>
       <div class="benefit reveal"><div class="check"><svg fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><div><h3>Rechtssicher &amp; diskret</h3><p>Lückenlose, gerichtsfeste Dokumentation und absolut sensibler Umgang mit persönlichen Nachlasswerten.</p></div></div>
-    </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -784,6 +816,19 @@ links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.cla
 // Scroll reveal
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Mobile-Aufklapper: ab 641px immer offen (Desktop unverändert), darunter zu.
+// Ohne JavaScript bleibt alles offen (open im Markup) – nichts verschwindet.
+const folds=document.querySelectorAll('details.fold');
+const desktop=matchMedia('(min-width:641px)');
+function syncFolds(){folds.forEach(d=>{d.open=desktop.matches})}
+folds.forEach(d=>d.addEventListener('toggle',()=>{
+  if(d.open){d.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'))}
+}));
+desktop.addEventListener('change',syncFolds);
+addEventListener('DOMContentLoaded',syncFolds);
+addEventListener('load',syncFolds);
+syncFolds();
 </script>
 </body>
 </html>
