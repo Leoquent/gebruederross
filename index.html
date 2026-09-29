@@ -159,6 +159,9 @@ nav.scrolled .burger span{background:var(--navy)}
 .svc h3{font-size:1.02rem;margin-bottom:8px;display:flex;gap:10px;align-items:baseline}
 .svc h3::before{content:"◆";color:var(--gold);font-size:.6rem;flex-shrink:0}
 .svc p{font-size:.88rem;color:var(--muted)}
+.svc.featured{border-color:var(--gold);background:linear-gradient(180deg,#fffdf8,var(--white));box-shadow:var(--shadow)}
+.svc.featured h3::before{content:"★"}
+.svc .usp-tag{display:inline-block;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
 .addons{margin-top:64px;background:var(--navy);border-radius:20px;padding:56px 48px;color:var(--white);position:relative;overflow:hidden}
 .addons::before{content:"";position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(185,152,90,.18),transparent 70%)}
 .addons h3{color:var(--white);font-size:1.5rem;margin-bottom:8px}
@@ -336,6 +339,13 @@ footer .logo-text{height:44px;width:auto;filter:brightness(0) invert(1)}
 <!-- TRUST BAR -->
 <div class="trustbar">
   <div class="container">
+    <span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)">
+        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M14 3v5h5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 14l2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>Kostenlose Mietvertragsprüfung
+    </span>
     <span>
       <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)">
         <path d="M12 2l8 4v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V6z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -575,6 +585,11 @@ footer .logo-text{height:44px;width:auto;filter:brightness(0) invert(1)}
       <p class="section-lead">Die komplette Vor-Ort-Abwicklung als verlängerter Arm des Nachlasspflegers, von der Sicherung bis zur Übergabe.</p>
     </div>
     <div class="grid">
+      <div class="svc featured reveal">
+        <span class="usp-tag">Kostenlos vorab</span>
+        <h3>Mietvertragsprüfung</h3>
+        <p>Wir prüfen den Mietvertrag des Nachlassobjekts vorab und kostenlos und stellen die tatsächlichen Umstände zusammen: welche Klauseln zu Schönheitsreparaturen, Renovierung und Instandhaltung vereinbart sind, welche Fristen und Formerfordernisse dort stehen und welche Arbeiten daraus absehbar anfallen. Das Ergebnis ist eine tatsachenbezogene Ersteinschätzung zur Vorbereitung Ihrer Entscheidung, keine Rechtsberatung; die rechtliche Bewertung bleibt beim Nachlasspfleger.</p>
+      </div>
       <div class="svc reveal"><h3>Objekt- und Leerstandsbegehung</h3><p>Wöchentliche Objekt- und Leerstandsbegehungen inkl. Bilddokumentation und Begehungsbericht zur Absicherung gegenüber Versicherungen, Gerichten und Erben.</p></div>
       <div class="svc reveal"><h3>Erstaufnahme &amp; Bestandsdokumentation</h3><p>Umfassende Foto- und Videodokumentation des Objekts vor Beginn aller Maßnahmen sowie danach.</p></div>
       <div class="svc reveal"><h3>Inventarisierung von Nachlässen</h3><p>Strukturierte Erfassung von Nachlassgegenständen inklusive Foto- und Videodokumentation.</p></div>
@@ -754,7 +769,7 @@ footer .logo-text{height:44px;width:auto;filter:brightness(0) invert(1)}
       <img src="logo_text.png" alt="Gebrüder Ross" class="logo-text">
     </span>
     <span>Kriegsbergstraße 30 · 70174 Stuttgart</span>
-    <span><a href="#">Impressum</a> · <a href="#">Datenschutz</a></span>
+    <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span>
   </div>
 </footer>
 
