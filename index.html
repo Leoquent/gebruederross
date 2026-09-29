@@ -213,6 +213,19 @@ nav.scrolled .burger span{background:var(--navy)}
 .svc.featured{border-color:var(--gold);background:linear-gradient(180deg,#fffdf8,var(--white));box-shadow:var(--shadow)}
 .svc.featured h3::before{content:"★"}
 .svc .usp-tag{display:inline-block;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
+/* Leistungen: am Desktop dieselbe Karte wie zuvor, auf Mobil ein Akkordeon */
+.svc-acc{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;transition:.25s}
+.svc-acc:hover{border-color:var(--gold);box-shadow:var(--shadow)}
+.svc-acc>summary{list-style:none;display:block;cursor:default}
+.svc-acc>summary::-webkit-details-marker{display:none}
+.svc-acc>summary::marker{content:""}
+.svc-acc>summary h3{font-size:1.02rem;margin-bottom:8px;display:flex;gap:10px;align-items:baseline}
+.svc-acc>summary h3::before{content:"◆";color:var(--gold);font-size:.6rem;flex-shrink:0}
+.svc-acc .usp-tag{display:block;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
+.svc-acc.featured{border-color:var(--gold);background:linear-gradient(180deg,#fffdf8,var(--white));box-shadow:var(--shadow)}
+.svc-acc.featured>summary h3::before{content:"★"}
+.svc-acc .acc-body p{font-size:.88rem;color:var(--muted)}
+html.js .svc-acc>summary{pointer-events:none}
 .addons{margin-top:64px;background:var(--navy);border-radius:20px;padding:56px 48px;color:var(--white);position:relative;overflow:hidden}
 .addons::before{content:"";position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(185,152,90,.18),transparent 70%);pointer-events:none}
 .addons h3{color:var(--white);font-size:1.5rem;margin-bottom:8px}
@@ -325,6 +338,17 @@ html.js .fold>summary::marker{content:""}
   nav .logo-text{height:36px;position:absolute;left:50%;transform:translateX(-50%)}
   section{padding:64px 0}
   .values-grid,.services .grid,.addons-grid,.steps{grid-template-columns:1fr}
+  .services .grid{gap:10px;margin-top:36px}
+  .svc-acc{padding:0;opacity:1!important;transform:none!important;transition:none!important}
+  html.js .svc-acc>summary{display:grid;grid-template-columns:1fr auto;gap:3px 12px;align-items:center;padding:15px 18px;cursor:pointer;pointer-events:auto}
+  .svc-acc>summary h3{grid-column:1;grid-row:2;margin-bottom:0;font-size:.97rem}
+  .svc-acc:not(.featured)>summary h3{grid-row:1/3;align-self:center}
+  .svc-acc>summary .usp-tag{grid-column:1;grid-row:1;margin-bottom:0;font-size:.62rem}
+  .svc-acc>summary::after{grid-column:2;grid-row:1/3;align-self:center;content:"+";color:var(--gold);font-size:1.45rem;font-weight:400;line-height:1}
+  .svc-acc[open]{border-color:var(--gold)}
+  .svc-acc[open]>summary::after{content:"−"}
+  .svc-acc .acc-body{padding:0 18px 16px}
+  .svc-acc .acc-body p{font-size:.86rem;line-height:1.6}
   /* „Gezielte Sicherung von" bleibt zweispaltig, damit es kompakt bleibt */
   .doc-list{grid-template-columns:1fr 1fr;gap:10px 14px}
   .doc-list li{font-size:.84rem;gap:8px;align-items:flex-start}
@@ -380,7 +404,7 @@ html.js .fold>summary::marker{content:""}
       <a href="#ablauf">Ablauf</a>
       <a href="#leistungen">Leistungen</a>
       <a href="#mehrwert">Ihr Mehrwert</a>
-      <a href="#kontakt" class="nav-cta">Kontakt aufnehmen</a>
+      <a href="#kontakt" class="nav-cta" data-umami-event="kontakt-aufnehmen">Kontakt aufnehmen</a>
     </div>
   </div>
 </nav>
@@ -396,8 +420,8 @@ html.js .fold>summary::marker{content:""}
       <div class="hero-left">
         <p class="sub">Wir übernehmen die vollständige Abwicklung Ihrer Nachlässe: von der Ermittlung und Sicherung des Nachlasses über die Suche nach Erben, Testamenten und digitalen Nachlässen bis hin zur Inventarisierung, Dokumentation, Bewertung und Verwertung. Damit Sie sich auf Ihre rechtlichen Kernaufgaben konzentrieren können.</p>
         <div class="btn-row">
-          <a href="#kontakt" class="btn btn-gold">Zusammenarbeiten</a>
-          <a href="#leistungen" class="btn btn-ghost">Leistungen</a>
+          <a href="#kontakt" class="btn btn-gold" data-umami-event="cta-zusammenarbeiten">Zusammenarbeiten</a>
+          <a href="#leistungen" class="btn btn-ghost" data-umami-event="cta-leistungen">Leistungen</a>
         </div>
         <div class="hero-stats">
           <div class="stat"><div class="num">20+</div><div class="lbl">Leistungen aus einer Hand</div></div>
@@ -670,34 +694,84 @@ html.js .fold>summary::marker{content:""}
       <h2 class="section-title">Alles aus einer Hand.</h2>
       <p class="section-lead">Die komplette Vor-Ort-Abwicklung als verlängerter Arm des Nachlasspflegers, von der Sicherung bis zur Übergabe.</p>
     </div>
-    <details class="fold" open>
-      <summary>Alle 19 Leistungen anzeigen</summary>
-      <div class="grid">
-      <div class="svc featured reveal">
-        <span class="usp-tag">Kostenlos vorab</span>
-        <h3>Mietvertragsprüfung</h3>
-        <p>Wir prüfen den Mietvertrag des Nachlassobjekts vorab und kostenlos und stellen die tatsächlichen Umstände zusammen: welche Klauseln zu Schönheitsreparaturen, Renovierung und Instandhaltung vereinbart sind, welche Fristen und Formerfordernisse dort stehen und welche Arbeiten daraus absehbar anfallen. Das Ergebnis ist eine tatsachenbezogene Ersteinschätzung zur Vorbereitung Ihrer Entscheidung, keine Rechtsberatung; die rechtliche Bewertung bleibt beim Nachlasspfleger.</p>
+    <div class="grid">
+      <details class="svc-acc featured reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Mietvertragsprüfung">
+        <summary><span class="usp-tag">Kostenlos vorab</span><h3>Mietvertragsprüfung</h3></summary>
+        <div class="acc-body"><p>Wir prüfen den Mietvertrag des Nachlassobjekts vorab und kostenlos und stellen die tatsächlichen Umstände zusammen: welche Klauseln zu Schönheitsreparaturen, Renovierung und Instandhaltung vereinbart sind, welche Fristen und Formerfordernisse dort stehen und welche Arbeiten daraus absehbar anfallen. Das Ergebnis ist eine tatsachenbezogene Ersteinschätzung zur Vorbereitung Ihrer Entscheidung, keine Rechtsberatung; die rechtliche Bewertung bleibt beim Nachlasspfleger.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Objekt- und Leerstandsbegehung">
+        <summary><h3>Objekt- und Leerstandsbegehung</h3></summary>
+        <div class="acc-body"><p>Wöchentliche Objekt- und Leerstandsbegehungen inkl. Bilddokumentation und Begehungsbericht zur Absicherung gegenüber Versicherungen, Gerichten und Erben.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Erstaufnahme und Bestandsdokumentation">
+        <summary><h3>Erstaufnahme &amp; Bestandsdokumentation</h3></summary>
+        <div class="acc-body"><p>Umfassende Foto- und Videodokumentation des Objekts vor Beginn aller Maßnahmen sowie danach.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Inventarisierung von Nachlässen">
+        <summary><h3>Inventarisierung von Nachlässen</h3></summary>
+        <div class="acc-body"><p>Strukturierte Erfassung von Nachlassgegenständen inklusive Foto- und Videodokumentation.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Wertgegenstands- und Dokumentensicherung">
+        <summary><h3>Wertgegenstands- &amp; Dokumentensicherung</h3></summary>
+        <div class="acc-body"><p>Sicherung von Schmuck, Bargeld, Urkunden, Verträgen, Testamenten und weiteren wertrelevanten Dokumenten.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Digitale Vermögenswertsuche">
+        <summary><h3>Digitale Vermögenswertsuche</h3></summary>
+        <div class="acc-body"><p>Suche nach Accounts &amp; Passwörtern sowie Erkennung und Sicherung von Hinweisen auf Kryptowährungen, Online-Depots, Brokerkonten, Hardware-Wallets und Datenträger.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Verwertungsmanagement">
+        <summary><h3>Verwertungsmanagement</h3></summary>
+        <div class="acc-body"><p>Organisation und Koordination der Verwertung über Auktionshäuser, Antiquitätenhändler, Sammler, Fachhändler und Ankäufer. Müssen Wertgegenstände verkauft werden, um offene Kosten oder Verbindlichkeiten des Nachlasses zu decken, übernehmen wir die Vermarktung des gesamten Konvoluts und sorgen dafür, dass ein geeigneter Käufer gefunden wird.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Verkaufsabwicklung mit Nachweisführung">
+        <summary><h3>Verkaufsabwicklung mit Nachweisführung</h3></summary>
+        <div class="acc-body"><p>Lückenlose Dokumentation sämtlicher Verkaufs- und Verwertungsprozesse.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Immobilienverwertung und Vermarktung">
+        <summary><h3>Immobilienverwertung &amp; Vermarktung</h3></summary>
+        <div class="acc-body"><p>Komplette Abwicklung zum marktspezifischen Höchstpreis – in Partnerschaft mit <a href="https://rwm-immobilien.de" target="_blank" rel="noopener" style="color: var(--navy); font-weight: 700; text-decoration: underline;">RWM Immobilien</a>, Stuttgart.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Nachlassräumung">
+        <summary><h3>Nachlassräumung</h3></summary>
+        <div class="acc-body"><p>Komplette Räumung von Wohnungen, Häusern, Gewerbeobjekten und Grundstücken im Nachlassfall, inklusive Entrümpelung und fachgerechter Entsorgung.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Trennung Wertgegenstände / Entsorgungsgut">
+        <summary><h3>Trennung Wertgegenstände / Entsorgungsgut</h3></summary>
+        <div class="acc-body"><p>Sorgfältige Sortierung zur Vermeidung von Vermögensverlusten.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Akten- und Datenschutzmanagement">
+        <summary><h3>Akten- &amp; Datenschutzmanagement</h3></summary>
+        <div class="acc-body"><p>Sichere Verwahrung und Übergabe sensibler Unterlagen und personenbezogener Dokumente.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Grundreinigung">
+        <summary><h3>Grundreinigung</h3></summary>
+        <div class="acc-body"><p>Fachgerechte Reinigung nach Abschluss der Räumung, Fensterreinigung, Desinfizierung inkl. Geruchs- und Ozonbehandlung.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Objektaufbereitung">
+        <summary><h3>Objektaufbereitung</h3></summary>
+        <div class="acc-body"><p>Herstellung eines vermietungs-, verkaufs- oder übergabefähigen Zustands.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Garten- und Landschaftsarbeiten">
+        <summary><h3>Garten- &amp; Landschaftsarbeiten</h3></summary>
+        <div class="acc-body"><p>Grünschnitt, Grundstückspflege, Heckenrückschnitt, Unkrautentfernung und Außenanlagenpflege.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Schlüssel- und Übergabemanagement">
+        <summary><h3>Schlüssel- &amp; Übergabemanagement</h3></summary>
+        <div class="acc-body"><p>Dokumentierte Objektübergabe an Eigentümer, Nachlasspfleger, Käufer oder Hausverwaltungen.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Transport und Einlagerung">
+        <summary><h3>Transport &amp; Einlagerung</h3></summary>
+        <div class="acc-body"><p>Versicherter Transport zum Wunschort sowie bei Bedarf Einlagerung von Nachlässen.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Komplette Vor-Ort-Abwicklung">
+        <summary><h3>Komplette Vor-Ort-Abwicklung</h3></summary>
+        <div class="acc-body"><p>Übernahme sämtlicher operativer Aufgaben vor Ort als verlängerter Arm des Nachlasspflegers.</p></div>
+      </details>
+      <details class="svc-acc reveal" open data-umami-event="leistung-geklickt" data-umami-event-leistung="Koordination weiterer Dienstleister">
+        <summary><h3>Koordination weiterer Dienstleister</h3></summary>
+        <div class="acc-body"><p>Vermittlung und Steuerung zusätzlicher Fachbetriebe und Spezialisten bei Bedarf.</p></div>
+      </details>
       </div>
-      <div class="svc reveal"><h3>Objekt- und Leerstandsbegehung</h3><p>Wöchentliche Objekt- und Leerstandsbegehungen inkl. Bilddokumentation und Begehungsbericht zur Absicherung gegenüber Versicherungen, Gerichten und Erben.</p></div>
-      <div class="svc reveal"><h3>Erstaufnahme &amp; Bestandsdokumentation</h3><p>Umfassende Foto- und Videodokumentation des Objekts vor Beginn aller Maßnahmen sowie danach.</p></div>
-      <div class="svc reveal"><h3>Inventarisierung von Nachlässen</h3><p>Strukturierte Erfassung von Nachlassgegenständen inklusive Foto- und Videodokumentation.</p></div>
-      <div class="svc reveal"><h3>Wertgegenstands- &amp; Dokumentensicherung</h3><p>Sicherung von Schmuck, Bargeld, Urkunden, Verträgen, Testamenten und weiteren wertrelevanten Dokumenten.</p></div>
-      <div class="svc reveal"><h3>Digitale Vermögenswertsuche</h3><p>Suche nach Accounts &amp; Passwörtern sowie Erkennung und Sicherung von Hinweisen auf Kryptowährungen, Online-Depots, Brokerkonten, Hardware-Wallets und Datenträger.</p></div>
-      <div class="svc reveal"><h3>Verwertungsmanagement</h3><p>Organisation und Koordination der Verwertung über Auktionshäuser, Antiquitätenhändler, Sammler, Fachhändler und Ankäufer. Müssen Wertgegenstände verkauft werden, um offene Kosten oder Verbindlichkeiten des Nachlasses zu decken, übernehmen wir die Vermarktung des gesamten Konvoluts und sorgen dafür, dass ein geeigneter Käufer gefunden wird.</p></div>
-      <div class="svc reveal"><h3>Verkaufsabwicklung mit Nachweisführung</h3><p>Lückenlose Dokumentation sämtlicher Verkaufs- und Verwertungsprozesse.</p></div>
-      <div class="svc reveal"><h3>Immobilienverwertung &amp; Vermarktung</h3><p>Komplette Abwicklung zum marktspezifischen Höchstpreis – in Partnerschaft mit <a href="https://rwm-immobilien.de" target="_blank" rel="noopener" style="color: var(--navy); font-weight: 700; text-decoration: underline;">RWM Immobilien</a>, Stuttgart.</p></div>
-      <div class="svc reveal"><h3>Nachlassräumung</h3><p>Komplette Räumung von Wohnungen, Häusern, Gewerbeobjekten und Grundstücken im Nachlassfall, inklusive Entrümpelung und fachgerechter Entsorgung.</p></div>
-      <div class="svc reveal"><h3>Trennung Wertgegenstände / Entsorgungsgut</h3><p>Sorgfältige Sortierung zur Vermeidung von Vermögensverlusten.</p></div>
-      <div class="svc reveal"><h3>Akten- &amp; Datenschutzmanagement</h3><p>Sichere Verwahrung und Übergabe sensibler Unterlagen und personenbezogener Dokumente.</p></div>
-      <div class="svc reveal"><h3>Grundreinigung</h3><p>Fachgerechte Reinigung nach Abschluss der Räumung, Fensterreinigung, Desinfizierung inkl. Geruchs- und Ozonbehandlung.</p></div>
-      <div class="svc reveal"><h3>Objektaufbereitung</h3><p>Herstellung eines vermietungs-, verkaufs- oder übergabefähigen Zustands.</p></div>
-      <div class="svc reveal"><h3>Garten- &amp; Landschaftsarbeiten</h3><p>Grünschnitt, Grundstückspflege, Heckenrückschnitt, Unkrautentfernung und Außenanlagenpflege.</p></div>
-      <div class="svc reveal"><h3>Schlüssel- &amp; Übergabemanagement</h3><p>Dokumentierte Objektübergabe an Eigentümer, Nachlasspfleger, Käufer oder Hausverwaltungen.</p></div>
-      <div class="svc reveal"><h3>Transport &amp; Einlagerung</h3><p>Versicherter Transport zum Wunschort sowie bei Bedarf Einlagerung von Nachlässen.</p></div>
-      <div class="svc reveal"><h3>Komplette Vor-Ort-Abwicklung</h3><p>Übernahme sämtlicher operativer Aufgaben vor Ort als verlängerter Arm des Nachlasspflegers.</p></div>
-      <div class="svc reveal"><h3>Koordination weiterer Dienstleister</h3><p>Vermittlung und Steuerung zusätzlicher Fachbetriebe und Spezialisten bei Bedarf.</p></div>
-      </div>
-    </details>
 
     <div class="addons reveal">
       <span class="tag">Zusatzleistungen</span>
@@ -767,7 +841,7 @@ html.js .fold>summary::marker{content:""}
         „Wir wissen: Sie verwalten fremdes Vermögen treuhänderisch und das ist eine große Verantwortung. Genau deshalb darf nichts schiefgehen. Dafür brauchen Sie einen erfahrenen Profi an Ihrer Seite.“
       </blockquote>
       
-      <div style="margin-top:32px"><a href="#kontakt" class="btn btn-gold">Erstgespräch vereinbaren</a></div>
+      <div style="margin-top:32px"><a href="#kontakt" class="btn btn-gold" data-umami-event="cta-erstgespraech">Erstgespräch vereinbaren</a></div>
     </div>
     <details class="fold" open>
       <summary>Alle Vorteile anzeigen</summary>
@@ -793,8 +867,8 @@ html.js .fold>summary::marker{content:""}
       <p class="section-lead">Sie betreuen einen Nachlass im Großraum Stuttgart? Wir freuen uns auf ein unverbindliches Erstgespräch – gern auch direkt vor Ort am Objekt.</p>
       <div class="contact-info">
         <div class="ci"><div class="ic"><svg fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="lbl">Firmensitz</div><div class="val">Gebrüder Ross · Kriegsbergstraße 30 · 70174 Stuttgart</div></div></div>
-        <div class="ci"><div class="ic"><svg fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div><div><div class="lbl">E-Mail</div><div class="val"><a href="mailto:info@gebruederross.de" style="color:inherit;text-decoration:none">info@gebruederross.de</a></div></div></div>
-        <div class="ci"><div class="ic"><svg fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><div class="lbl">Telefon</div><div class="val"><a href="tel:+4971165830800" style="color:inherit;text-decoration:none">0711 65830800</a></div></div></div>
+        <div class="ci"><div class="ic"><svg fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div><div><div class="lbl">E-Mail</div><div class="val"><a href="mailto:info@gebruederross.de" data-umami-event="kontakt-mail" style="color:inherit;text-decoration:none">info@gebruederross.de</a></div></div></div>
+        <div class="ci"><div class="ic"><svg fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><div class="lbl">Telefon</div><div class="val"><a href="tel:+4971165830800" data-umami-event="kontakt-telefon" style="color:inherit;text-decoration:none">0711 65830800</a></div></div></div>
       </div>
     </div>
     <div class="contact-card reveal">
@@ -839,6 +913,7 @@ html.js .fold>summary::marker{content:""}
             return antwort.json();
           }).then(function () {
             clearTimeout(abbruch);
+            if (window.umami) { umami.track('formular-gesendet'); }
             form.innerHTML = '<p style="padding:28px 0;text-align:center;font-size:1.05rem">'
               + 'Vielen Dank für Ihre Nachricht.<br>Wir melden uns in der Regel innerhalb eines Werktages.</p>';
           }).catch(function () {
@@ -849,6 +924,7 @@ html.js .fold>summary::marker{content:""}
             btn.disabled = false;
             btn.textContent = 'Nachricht absenden';
             status.innerHTML = AUSWEG;
+            if (window.umami) { umami.track('formular-fehler'); }
           }
         });
       })();
@@ -901,6 +977,30 @@ desktop.addEventListener('change',syncFolds);
 addEventListener('DOMContentLoaded',syncFolds);
 addEventListener('load',syncFolds);
 syncFolds();
+
+// Leistungen: am Desktop Karten (alle offen), auf Mobil ein Akkordeon mit nur einer offenen Zeile.
+// Ohne JavaScript bleiben alle Zeilen offen und damit lesbar.
+const accs=document.querySelectorAll('details.svc-acc');
+const kannName=('name' in HTMLDetailsElement.prototype);
+function syncAcc(){
+  const mobil=!desktop.matches;
+  accs.forEach(d=>{
+    if(mobil){ if(kannName){d.setAttribute('name','leistungen')} } else { d.removeAttribute('name') }
+    d.open=!mobil;
+  });
+}
+if(!kannName){
+  accs.forEach(d=>d.addEventListener('toggle',()=>{
+    if(d.open&&!desktop.matches){accs.forEach(o=>{if(o!==d)o.open=false})}
+  }));
+}
+accs.forEach(d=>d.addEventListener('toggle',()=>{
+  if(d.open){d.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'))}
+}));
+desktop.addEventListener('change',syncAcc);
+addEventListener('DOMContentLoaded',syncAcc);
+addEventListener('load',syncAcc);
+syncAcc();
 </script>
 </body>
 </html>
