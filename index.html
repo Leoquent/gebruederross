@@ -54,8 +54,10 @@
   ],
   "knowsAbout": [
     "Nachlasspflegschaft",
+    "Nachlassverwaltung",
     "Nachlassabwicklung",
     "Nachlassräumung",
+    "Entrümpelung",
     "Nachlassverwertung",
     "Mietvertragsprüfung",
     "Haushaltsauflösung"
@@ -168,7 +170,7 @@ nav.scrolled .burger span{background:var(--navy)}
 /* ---------- Value props ---------- */
 .values-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;margin-top:56px}
 .value-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:36px 30px;transition:.3s;position:relative;overflow:hidden}
-.value-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:.3s}
+.value-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:.3s;pointer-events:none}
 .value-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
 .value-card:hover::before{opacity:1}
 .value-card .icon{width:52px;height:52px;border-radius:12px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;margin-bottom:22px}
@@ -181,7 +183,7 @@ nav.scrolled .burger span{background:var(--navy)}
 .about .container{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
 .about-visual{position:relative}
 .portrait-frame{aspect-ratio:4/5;border-radius:var(--radius);background:linear-gradient(150deg,var(--blue-light),#dce8f3);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.portrait-frame::after{content:"";position:absolute;inset:16px;border:1px solid rgba(46,109,168,.25);border-radius:8px}
+.portrait-frame::after{content:"";position:absolute;inset:16px;border:1px solid rgba(46,109,168,.25);border-radius:8px;pointer-events:none}
 .portrait-frame img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 .portrait-frame .placeholder{text-align:center;color:var(--blue);opacity:.7;padding:24px}
 .portrait-frame .placeholder svg{width:64px;height:64px;stroke:var(--blue);margin:0 auto 14px}
@@ -212,7 +214,7 @@ nav.scrolled .burger span{background:var(--navy)}
 .svc.featured h3::before{content:"★"}
 .svc .usp-tag{display:inline-block;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
 .addons{margin-top:64px;background:var(--navy);border-radius:20px;padding:56px 48px;color:var(--white);position:relative;overflow:hidden}
-.addons::before{content:"";position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(185,152,90,.18),transparent 70%)}
+.addons::before{content:"";position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(185,152,90,.18),transparent 70%);pointer-events:none}
 .addons h3{color:var(--white);font-size:1.5rem;margin-bottom:8px}
 .addons .tag{color:var(--gold);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
 .addons-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:36px}
@@ -235,7 +237,7 @@ nav.scrolled .burger span{background:var(--navy)}
 
 /* ---------- Contact ---------- */
 .contact{background:linear-gradient(160deg,var(--navy),var(--navy-2));color:var(--white);position:relative;overflow:hidden}
-.contact::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px}
+.contact::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
 .contact .container{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
 .contact h2{color:var(--white)}
 .contact .section-lead{color:rgba(255,255,255,.75)}
@@ -478,7 +480,7 @@ html.js .fold>summary::marker{content:""}
     <div class="reveal">
       <span class="eyebrow">Warum Gebrüder Ross</span>
       <h2 class="section-title">Nachlassabwicklung ist Vertrauenssache.</h2>
-      <p class="section-lead">Unser Anspruch: Nachlasspfleger und Nachlassverwalter nachhaltig entlasten – bei der Nachlasspflegschaft wie bei der Nachlassabwicklung, weit über eine klassische Haushaltsauflösung hinaus.</p>
+      <p class="section-lead">Unser Anspruch: Nachlasspfleger und Nachlassverwalter nachhaltig entlasten – bei der Nachlasspflegschaft, der Nachlassverwaltung und der Nachlassabwicklung, weit über eine klassische Haushaltsauflösung hinaus.</p>
     </div>
     <div class="values-grid">
       <div class="value-card reveal">
@@ -555,7 +557,7 @@ html.js .fold>summary::marker{content:""}
           </svg>
         </div>
         <h3>Gerichtsfeste Dokumentation</h3>
-        <p>Foto-, Video- und Berichtsdokumentation vom Erstzutritt bis zur Übergabe, die belastbar gegenüber Gerichten, Erben und Versicherungen.</p>
+        <p>Foto-, Video- und Berichtsdokumentation vom Erstzutritt bis zur Übergabe, die gegenüber Gerichten, Erben und Versicherungen belastbar ist.</p>
       </div>
       <div class="value-card reveal">
         <div class="icon">
@@ -609,7 +611,7 @@ html.js .fold>summary::marker{content:""}
         <span class="eyebrow" style="color: var(--gold);">Unsere Arbeitsweise</span>
         <h2>„Räumen mit Verstand statt nur mit Muskeln und Hand.“</h2>
         <p style="color: rgba(255,255,255,.8); font-size: 1.05rem; line-height: 1.7; margin-bottom: 16px;">
-          Wir entsorgen Nachlässe nicht blind. Jeder Nachlass wird von uns systematisch und mit geschultem Blick durchsucht, um wertvolle Dokumente und Vermögenswerte zu sichern, bevor voreilig geräumt wird.
+          Wir entsorgen Nachlässe nicht blind. Jeder Nachlass wird von uns systematisch und mit geschultem Blick durchsucht, um wertvolle Dokumente und Vermögenswerte zu sichern, damit nicht voreilig geräumt wird.
         </p>
       </div>
       <div class="philosophy-list reveal">
@@ -684,7 +686,7 @@ html.js .fold>summary::marker{content:""}
       <div class="svc reveal"><h3>Verwertungsmanagement</h3><p>Organisation und Koordination der Verwertung über Auktionshäuser, Antiquitätenhändler, Sammler, Fachhändler und Ankäufer. Müssen Wertgegenstände verkauft werden, um offene Kosten oder Verbindlichkeiten des Nachlasses zu decken, übernehmen wir die Vermarktung des gesamten Konvoluts und sorgen dafür, dass ein geeigneter Käufer gefunden wird.</p></div>
       <div class="svc reveal"><h3>Verkaufsabwicklung mit Nachweisführung</h3><p>Lückenlose Dokumentation sämtlicher Verkaufs- und Verwertungsprozesse.</p></div>
       <div class="svc reveal"><h3>Immobilienverwertung &amp; Vermarktung</h3><p>Komplette Abwicklung zum marktspezifischen Höchstpreis – in Partnerschaft mit <a href="https://rwm-immobilien.de" target="_blank" rel="noopener" style="color: var(--navy); font-weight: 700; text-decoration: underline;">RWM Immobilien</a>, Stuttgart.</p></div>
-      <div class="svc reveal"><h3>Nachlassräumung</h3><p>Komplette Räumung von Wohnungen, Häusern, Gewerbeobjekten und Grundstücken.</p></div>
+      <div class="svc reveal"><h3>Nachlassräumung</h3><p>Komplette Räumung von Wohnungen, Häusern, Gewerbeobjekten und Grundstücken im Nachlassfall, inklusive Entrümpelung und fachgerechter Entsorgung.</p></div>
       <div class="svc reveal"><h3>Trennung Wertgegenstände / Entsorgungsgut</h3><p>Sorgfältige Sortierung zur Vermeidung von Vermögensverlusten.</p></div>
       <div class="svc reveal"><h3>Akten- &amp; Datenschutzmanagement</h3><p>Sichere Verwahrung und Übergabe sensibler Unterlagen und personenbezogener Dokumente.</p></div>
       <div class="svc reveal"><h3>Grundreinigung</h3><p>Fachgerechte Reinigung nach Abschluss der Räumung, Fensterreinigung, Desinfizierung inkl. Geruchs- und Ozonbehandlung.</p></div>
