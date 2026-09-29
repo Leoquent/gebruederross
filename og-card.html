@@ -139,12 +139,12 @@ body {
   <div class="content-stack">
     <!-- Official Logo Icon (Horse + GR) -->
     <div class="logo-wrap">
-      <img src="logo_icon.png" alt="Gebrüder Ross Signet">
+      <img src="logo_icon.webp" alt="Gebrüder Ross Signet">
     </div>
 
     <!-- Official Brand Wordmark -->
     <div class="logo-text-wrap">
-      <img id="brand-logo-text" src="logo_text.png" alt="Gebrüder Ross – Nachlassservice">
+      <img id="brand-logo-text" src="logo_text.webp" alt="Gebrüder Ross – Nachlassservice">
     </div>
 
     <!-- Core Headline -->
@@ -156,11 +156,11 @@ body {
 </div>
 
 <script>
-// Automatically convert navy letters in logo_text.png to white on dark background while keeping gold lines intact
+// Automatically convert navy letters in logo_text.webp to white on dark background while keeping gold lines intact
 window.addEventListener('DOMContentLoaded', () => {
   const img = new Image();
   img.crossOrigin = 'anonymous';
-  img.src = 'logo_text.png';
+  img.src = 'logo_text.webp';
   img.onload = () => {
     const canvas = document.createElement('canvas');
     canvas.width = img.width;

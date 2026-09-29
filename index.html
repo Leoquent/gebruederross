@@ -285,9 +285,13 @@ html.js .fold>summary::marker{content:""}
   nav.menu-open .burger span:nth-child(1){top:11px;transform:rotate(45deg)}
   nav.menu-open .burger span:nth-child(2){opacity:0}
   nav.menu-open .burger span:nth-child(3){top:11px;transform:rotate(-45deg)}
-  .eyebrow{font-size:.72rem;letter-spacing:.15em}
-  .mobile-block{display:block;white-space:nowrap}
-  .hero h1{font-size:7.8vw;line-height:1.2}
+  .eyebrow{font-size:.68rem;letter-spacing:.12em}
+  .mobile-block{display:block;white-space:normal}
+  .hero h1{font-size:7vw;line-height:1.25}
+  /* Kopfzeile auf Mobil beim Herunterscrollen ausblenden, damit sie keine
+     Textzeilen mitten durchschneidet; beim Hochscrollen kommt sie zurück. */
+  nav{transition:background .35s,box-shadow .35s,padding .35s,transform .3s}
+  nav.nav-hidden{transform:translateY(-100%)}
   .btn-row{display:flex;gap:10px}
   .btn-row .btn{flex:1;justify-content:center;padding:12px 16px;font-size:.9rem;white-space:nowrap;text-align:center}
   .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px 16px;margin-top:36px}
@@ -307,9 +311,9 @@ html.js .fold>summary::marker{content:""}
 <nav id="nav">
   <div class="container nav-inner">
     <a href="#top" class="logo">
-      <img src="logo_icon.png" alt="Gebrüder Ross Logo" class="logo-icon">
+      <img src="logo_icon.webp" alt="Gebrüder Ross Logo" class="logo-icon">
       <span class="logo-divider"></span>
-      <img src="logo_text.png" alt="Gebrüder Ross" class="logo-text">
+      <img src="logo_text.webp" alt="Gebrüder Ross" class="logo-text">
     </a>
     <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button>
     <div class="nav-links" id="navLinks">
@@ -521,7 +525,7 @@ html.js .fold>summary::marker{content:""}
   <div class="container">
     <div class="about-visual reveal">
       <div class="portrait-frame">
-        <img src="teammehrplatzan enrändern.png" alt="Simon Bartosch &amp; Raphael Uhland (geb. Bartosch)" class="team-img">
+        <img src="team-gebrueder-ross.webp" alt="Simon Bartosch &amp; Raphael Uhland (geb. Bartosch)" class="team-img" width="1200" height="944">
       </div>
       <div class="about-badge"><div class="q">„Früher haben wir uns ein <b>Kinderzimmer</b> geteilt – heute ein <b>Büro</b>.“</div></div>
     </div>
@@ -797,8 +801,8 @@ html.js .fold>summary::marker{content:""}
 <footer>
   <div class="container">
     <span class="logo">
-      <img src="logo_icon.png" alt="Gebrüder Ross Logo" class="logo-icon">
-      <img src="logo_text.png" alt="Gebrüder Ross" class="logo-text">
+      <img src="logo_icon.webp" alt="Gebrüder Ross Logo" class="logo-icon">
+      <img src="logo_text.webp" alt="Gebrüder Ross" class="logo-text">
     </span>
     <span>Kriegsbergstraße 30 · 70174 Stuttgart</span>
     <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span>
@@ -809,6 +813,15 @@ html.js .fold>summary::marker{content:""}
 // Nav scroll state
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+// Kopfzeile auf Mobil beim Herunterscrollen ausblenden (schneidet sonst Text durch)
+let letzteY=scrollY;
+addEventListener('scroll',()=>{
+  const y=scrollY;
+  if(innerWidth>640||nav.classList.contains('menu-open')){nav.classList.remove('nav-hidden')}
+  else if(y>letzteY+8&&y>140){nav.classList.add('nav-hidden')}
+  else if(y<letzteY-8){nav.classList.remove('nav-hidden')}
+  letzteY=y;
+},{passive:true});
 // Mobile menu
 const burger=document.getElementById('burger'),links=document.getElementById('navLinks');
 burger.addEventListener('click',()=>{links.classList.toggle('open');nav.classList.toggle('menu-open')});
