@@ -64,6 +64,7 @@ nav.scrolled .burger span{background:var(--navy)}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:start}
 .hero h1{color:var(--white);font-size:clamp(2.6rem,5.5vw,4.8rem);margin:0;line-height:1.15}
 .mobile-block{display:block;white-space:nowrap}
+.mbr{display:none}
 .hero h1 em{font-style:italic;color:var(--gold)}
 .hero p.sub{color:rgba(255,255,255,.78);font-size:1.15rem;max-width:540px;margin-bottom:38px}
 .hero .eyebrow{color:var(--gold)}
@@ -121,7 +122,7 @@ nav.scrolled .burger span{background:var(--navy)}
 .process{background:linear-gradient(180deg,var(--bg),var(--blue-light) 140%)}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px;counter-reset:step}
 .step{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:32px 26px;position:relative;counter-increment:step}
-.step::before{content:"0" counter(step);font-family:var(--font-sans);font-size:2.05rem;color:var(--blue-light);font-weight:700;line-height:1.25;display:block;margin-bottom:16px;-webkit-text-stroke:1px var(--blue)}
+.step::before{content:"0" counter(step);font-family:var(--font-sans);font-size:2.05rem;color:var(--blue);font-weight:700;line-height:1.25;display:block;margin-bottom:16px}
 .step h3{font-size:1.05rem;margin-bottom:8px}
 .step p{font-size:.9rem;color:var(--muted)}
 
@@ -205,9 +206,15 @@ footer .logo-text{height:44px;width:auto;filter:brightness(0) invert(1)}
 /* Die Klasse .js setzt ein Skript im Kopf. Ohne JavaScript bleibt alles offen
    (open steht im Markup) – dann verschwindet nichts, es gibt nur keinen Aufklapper. */
 /* FAQ */
-.faq-list{display:grid;grid-template-columns:1fr 1fr;gap:28px 52px;margin-top:38px}
-.faq-item h3{font-family:var(--font-serif);font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:9px;line-height:1.4}
-.faq-item p{font-size:.92rem;line-height:1.7;color:var(--muted)}
+.faq-list{display:grid;grid-template-columns:1fr 1fr;gap:14px 52px;margin-top:38px;align-items:start}
+.faq-item{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:0 22px}
+.faq-item>summary{list-style:none;cursor:pointer;padding:18px 30px 18px 0;position:relative}
+.faq-item>summary::-webkit-details-marker{display:none}
+.faq-item>summary::after{content:"+";position:absolute;right:0;top:15px;font-family:var(--font-sans);font-size:1.35rem;line-height:1;color:var(--gold);font-weight:400}
+.faq-item[open]>summary::after{content:"−"}
+.faq-item[open]>summary{padding-bottom:12px}
+.faq-item h3{font-family:var(--font-serif);font-size:1.02rem;font-weight:600;color:var(--navy);margin:0;line-height:1.45}
+.faq-item p{font-size:.92rem;line-height:1.7;color:var(--muted);padding-bottom:20px}
 html.js .fold>summary{display:none}
 html.js .fold>summary::-webkit-details-marker{display:none}
 html.js .fold>summary::marker{content:""}
@@ -295,10 +302,12 @@ html.js .fold>summary::marker{content:""}
   nav.menu-open .burger span:nth-child(2){opacity:0}
   nav.menu-open .burger span:nth-child(3){top:11px;transform:rotate(-45deg)}
   .eyebrow{font-size:.68rem;letter-spacing:.12em}
-  .faq-list{grid-template-columns:1fr;gap:24px;margin-top:26px}
+  .faq-list{grid-template-columns:1fr;gap:12px;margin-top:26px}
+  .faq-item{padding:0 18px}
   .faq-item h3{font-size:.98rem}
   .mobile-block{display:block;white-space:normal}
-  .hero h1{font-size:7vw;line-height:1.25}
+  .mbr{display:inline}
+  .hero h1{font-size:7.6vw;line-height:1.16}
   /* Kopfzeile auf Mobil beim Herunterscrollen ausblenden, damit sie keine
      Textzeilen mitten durchschneidet; beim Hochscrollen kommt sie zurück. */
   nav{transition:background .35s,box-shadow .35s,padding .35s,transform .3s}

@@ -191,7 +191,7 @@
   <div class="container">
     <div class="hero-intro">
       <span class="eyebrow">Für Nachlasspfleger und Verwalter</span>
-      <h1><span class="mobile-block">Ihr <em>verlängerter Arm</em><br class="mbr"> vor Ort.</span> <span class="mobile-block">Bei jedem Nachlass.</span></h1>
+      <h1><span class="mobile-block">Ihr <em>verlängerter Arm</em> vor Ort.</span> <span class="mobile-block">Bei jedem Nachlass.</span></h1>
     </div>
     <div class="hero-grid">
       <div class="hero-left">
@@ -643,48 +643,51 @@
       <h2 class="section-title">Was Auftraggeber uns am häufigsten fragen.</h2>
       <p class="section-lead">Kurz beantwortet – von der Übernahme des Objekts bis zum Nachweis für das Gericht.</p>
     </div>
-    <div class="faq-list">
-        <details class="faq-item" open data-umami-event="faq-geoeffnet" data-umami-event-frage="Übernehmen Sie die Abwicklung komplett vor Ort?">
-          <summary><h3>Übernehmen Sie die Abwicklung komplett vor Ort?</h3></summary>
+    <details class="fold" open>
+      <summary>Alle Fragen anzeigen</summary>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <h3>Übernehmen Sie die Abwicklung komplett vor Ort?</h3>
           <p>Ja. Wir übernehmen den gesamten Vorgang am Objekt: Sicherung, Inventarisierung, Dokumentation, Bewertung, Verwertung, Räumung und die dokumentierte Übergabe. Sie haben dabei durchgehend einen festen Ansprechpartner.</p>
-        </details>
-        <details class="faq-item" open data-umami-event="faq-geoeffnet" data-umami-event-frage="Wie schnell können Sie ein Objekt übernehmen?">
-          <summary><h3>Wie schnell können Sie ein Objekt übernehmen?</h3></summary>
+        </div>
+        <div class="faq-item reveal">
+          <h3>Wie schnell können Sie ein Objekt übernehmen?</h3>
           <p>Nach der Beauftragung in der Regel kurzfristig, bei dringenden Sicherungsmaßnahmen auch unmittelbar. Den konkreten Termin stimmen wir mit Ihnen ab.</p>
-        </details>
-        <details class="faq-item" open data-umami-event="faq-geoeffnet" data-umami-event-frage="Wie sichern Sie Wertsachen und Dokumente?">
-          <summary><h3>Wie sichern Sie Wertsachen und Dokumente?</h3></summary>
+        </div>
+        <div class="faq-item reveal">
+          <h3>Wie sichern Sie Wertsachen und Dokumente?</h3>
           <p>Alle Wertgegenstände und relevanten Unterlagen werden erfasst, in Inventarlisten geführt und mit Foto- und Videodokumentation belegt. Die Verwahrung erfolgt gesichert, die Übergabe gegen Nachweis.</p>
-        </details>
-        <details class="faq-item" open data-umami-event="faq-geoeffnet" data-umami-event-frage="Welche Nachweise erhalte ich für das Gericht?">
-          <summary><h3>Welche Nachweise erhalte ich für das Gericht?</h3></summary>
+        </div>
+        <div class="faq-item reveal">
+          <h3>Welche Nachweise erhalte ich für das Gericht?</h3>
           <p>Eine durchgehende Foto-, Video- und Berichtsdokumentation vom Erstzutritt bis zur Übergabe, ergänzt um Inventarlisten, Bewertungen und Verkaufsnachweise. Jede Maßnahme wird zeitlich festgehalten.</p>
-        </details>
-        <details class="faq-item" open data-umami-event="faq-geoeffnet" data-umami-event-frage="Was kostet die Abwicklung eines Nachlasses?">
-          <summary><h3>Was kostet die Abwicklung eines Nachlasses?</h3></summary>
+        </div>
+        <div class="faq-item reveal">
+          <h3>Was kostet die Abwicklung eines Nachlasses?</h3>
           <p>Das hängt von Größe, Zustand und Umfang des Objekts ab. Nach einer Begehung erhalten Sie ein Angebot mit festen Positionen. Auf Wunsch finanzieren wir vor, damit das Nachlasskonto nicht vorzeitig belastet wird.</p>
-        </details>
-        <details class="faq-item" open data-umami-event="faq-geoeffnet" data-umami-event-frage="Müssen die Erben bekannt sein?">
-          <summary><h3>Müssen die Erben bekannt sein?</h3></summary>
+        </div>
+        <div class="faq-item reveal">
+          <h3>Müssen die Erben bekannt sein?</h3>
           <p>Nein. Wir arbeiten im Auftrag des Nachlasspflegers oder Nachlassverwalters, auch solange die Erbfolge noch nicht geklärt ist.</p>
-        </details>
-        <details class="faq-item" open data-umami-event="faq-geoeffnet" data-umami-event-frage="Prüfen Sie auch den Mietvertrag des Objekts?">
-          <summary><h3>Prüfen Sie auch den Mietvertrag des Objekts?</h3></summary>
+        </div>
+        <div class="faq-item reveal">
+          <h3>Prüfen Sie auch den Mietvertrag des Objekts?</h3>
           <p>Ja, vorab und kostenlos. Wir stellen zusammen, welche Klauseln zu Schönheitsreparaturen, Renovierung und Instandhaltung vereinbart sind, welche Fristen gelten und welche Arbeiten daraus absehbar anfallen – als tatsachenbezogene Ersteinschätzung, nicht als Rechtsberatung.</p>
-        </details>
-        <details class="faq-item" open data-umami-event="faq-geoeffnet" data-umami-event-frage="Was passiert mit Gegenständen ohne Wert?">
-          <summary><h3>Was passiert mit Gegenständen ohne Wert?</h3></summary>
+        </div>
+        <div class="faq-item reveal">
+          <h3>Was passiert mit Gegenständen ohne Wert?</h3>
           <p>Wertgegenstände und Entsorgungsgut werden sorgfältig getrennt. Die Entsorgung erfolgt fachgerecht und wird dokumentiert.</p>
-        </details>
-        <details class="faq-item" open data-umami-event="faq-geoeffnet" data-umami-event-frage="Arbeiten Sie auch außerhalb von Stuttgart?">
-          <summary><h3>Arbeiten Sie auch außerhalb von Stuttgart?</h3></summary>
+        </div>
+        <div class="faq-item reveal">
+          <h3>Arbeiten Sie auch außerhalb von Stuttgart?</h3>
           <p>Wir sind im Großraum Stuttgart und in der umliegenden Region tätig, darüber hinaus nach Absprache.</p>
-        </details>
-        <details class="faq-item" open data-umami-event="faq-geoeffnet" data-umami-event-frage="Bekomme ich einen festen Ansprechpartner?">
-          <summary><h3>Bekomme ich einen festen Ansprechpartner?</h3></summary>
+        </div>
+        <div class="faq-item reveal">
+          <h3>Bekomme ich einen festen Ansprechpartner?</h3>
           <p>Ja. Sie arbeiten direkt mit Simon Bartosch und Raphael Uhland zusammen, ohne wechselnde Zuständigkeiten.</p>
-        </details>
-    </div>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -831,8 +834,6 @@ desktop.addEventListener('change',syncAcc);
 addEventListener('DOMContentLoaded',syncAcc);
 addEventListener('load',syncAcc);
 syncAcc();
-/* FAQ: mit JavaScript eingeklappt, ohne JavaScript bleiben alle Antworten offen */
-document.querySelectorAll("details.faq-item[open]").forEach(function(d){d.removeAttribute("open")});
 </script>
 </body>
 </html>
