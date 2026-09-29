@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>OG Card Preview – Gebrüder Ross</title>
+<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -128,6 +129,17 @@ body {
   border-radius: 30px;
   backdrop-filter: blur(8px);
 }
+/* Central content survives landscape and square center crops. */
+.og-canvas { padding: 45px 310px; }
+.ambient-glow { opacity: 0.3; }
+.content-stack { width: 580px; flex: none; }
+.brand-lockup { display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 32px; }
+.logo-wrap { margin-bottom: 0; display: flex; }
+.logo-wrap img { height: 84px; filter: none; }
+.logo-text-wrap { width: 380px; max-width: 380px; margin-bottom: 0; display: flex; }
+.logo-text-wrap img { filter: none; }
+.claim { width: 580px; font-size: 52px; line-height: 1.14; margin-bottom: 28px; text-shadow: none; color: #ffffff; }
+.sub-tag { font-size: 26px; letter-spacing: 0.025em; text-transform: none; border: 0; padding: 0; background: none; color: #cbb27c; }
 </style>
 </head>
 <body>
@@ -137,54 +149,28 @@ body {
   <div class="ambient-glow"></div>
 
   <div class="content-stack">
+    <div class="brand-lockup">
     <!-- Official Logo Icon (Horse + GR) -->
     <div class="logo-wrap">
-      <img src="logo_icon.webp" alt="Gebrüder Ross Signet">
+      <img id="brand-logo-icon" src="logo-icon-clean-white.svg" alt="Gebrüder Ross Signet">
     </div>
 
     <!-- Official Brand Wordmark -->
     <div class="logo-text-wrap">
-      <img id="brand-logo-text" src="logo_text.webp" alt="Gebrüder Ross – Nachlassservice">
+      <img id="brand-logo-text" src="logo-text-clean-white.svg" alt="Gebrüder Ross – Nachlassservice">
+    </div>
+
     </div>
 
     <!-- Core Headline -->
-    <div class="claim">Ihr verlängerter Arm vor Ort.</div>
+    <div class="claim">Ihr verlängerter Arm.<br>Bei jedem Nachlass vor Ort.</div>
 
     <!-- Sub Tag -->
-    <div class="sub-tag">Großraum Stuttgart</div>
+    <div class="sub-tag">Stuttgart &amp; Umgebung</div>
   </div>
 </div>
 
-<script>
-// Automatically convert navy letters in logo_text.webp to white on dark background while keeping gold lines intact
-window.addEventListener('DOMContentLoaded', () => {
-  const img = new Image();
-  img.crossOrigin = 'anonymous';
-  img.src = 'logo_text.webp';
-  img.onload = () => {
-    const canvas = document.createElement('canvas');
-    canvas.width = img.width;
-    canvas.height = img.height;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0);
-    const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const d = imgData.data;
-    for (let i = 0; i < d.length; i += 4) {
-      const r = d[i], g = d[i+1], b = d[i+2], a = d[i+3];
-      if (a > 15) {
-        // If it's navy / dark blue (b > r and r is low)
-        if (b > r && r < 90 && g < 110) {
-          d[i] = 255;
-          d[i+1] = 255;
-          d[i+2] = 255;
-        }
-      }
-    }
-    ctx.putImageData(imgData, 0, 0);
-    document.getElementById('brand-logo-text').src = canvas.toDataURL();
-  };
-});
-</script>
+
 
 </body>
 </html>
