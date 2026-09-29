@@ -122,7 +122,7 @@ nav.scrolled .burger span{background:var(--navy)}
 .process{background:linear-gradient(180deg,var(--bg),var(--blue-light) 140%)}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px;counter-reset:step}
 .step{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:32px 26px;position:relative;counter-increment:step}
-.step::before{content:"0" counter(step);font-family:var(--font-sans);font-size:2.05rem;color:var(--blue);font-weight:700;line-height:1.25;display:block;margin-bottom:16px}
+.step::before{content:counter(step);font-family:var(--font-serif);font-size:2.6rem;color:var(--blue-light);font-weight:700;line-height:1;display:block;margin-bottom:16px;-webkit-text-stroke:1px var(--blue)}
 .step h3{font-size:1.05rem;margin-bottom:8px}
 .step p{font-size:.9rem;color:var(--muted)}
 
