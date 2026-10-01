@@ -317,8 +317,8 @@ html.js .fold>summary::marker{content:""}
   .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px 16px;margin-top:36px}
   .addons{padding:40px 28px}
   .contact-card{padding:32px 24px}
-  .trustbar .container{display:grid;grid-template-columns:1fr 1fr;gap:16px 12px;text-align:left}
-  .trustbar span{white-space:normal;align-items:flex-start;font-size:.8rem}
+  .trustbar .container{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px;text-align:left}
+  .trustbar span{min-width:0;white-space:normal;align-items:flex-start;font-size:.8rem;letter-spacing:.02em;overflow-wrap:anywhere;hyphens:manual}
   .trustbar svg{margin-top:3px;flex-shrink:0}
   footer .logo-icon{height:32px}
   footer .logo-text{height:28px}
