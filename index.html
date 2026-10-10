@@ -385,7 +385,8 @@
   <div class="container">
     <div class="about-visual reveal">
       <div class="portrait-frame">
-        <img src="team-gebrueder-ross.webp" alt="Simon Bartosch &amp; Raphael Uhland (geb. Bartosch)" class="team-img" width="1200" height="944">
+        <!-- ⚡ Bolt: Added lazy loading and async decoding to prevent this below-the-fold image from blocking initial page load -->
+        <img src="team-gebrueder-ross.webp" alt="Simon Bartosch &amp; Raphael Uhland (geb. Bartosch)" class="team-img" width="1200" height="944" loading="lazy" decoding="async">
       </div>
       <div class="about-badge"><div class="q">„Früher haben wir uns ein <b>Kinderzimmer</b> geteilt – heute ein <b>Büro</b>.“</div></div>
     </div>
