@@ -66,7 +66,11 @@ nav.scrolled .burger span{background:var(--navy)}
 .mobile-block{display:block;white-space:nowrap}
 .mbr{display:none}
 .hero h1 em{font-style:italic;color:var(--gold)}
-.hero p.sub{color:rgba(255,255,255,.78);font-size:1.15rem;max-width:540px;margin-bottom:38px}
+.hero p.sub{color:rgba(255,255,255,.78);font-size:1.15rem;max-width:540px;margin-bottom:24px}
+.hero-note{color:rgba(255,255,255,.78);font-size:.95rem;max-width:540px;margin-bottom:32px;padding-left:18px;border-left:2px solid var(--gold)}
+.hero-note strong{color:var(--white)}
+.hero-note a{display:inline-block;color:var(--gold);text-decoration:underline;text-underline-offset:3px;margin-top:8px}
+.hero-note a:hover{color:var(--white)}
 .hero .eyebrow{color:var(--gold)}
 .btn-row{display:flex;gap:16px;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;border-radius:100px;font-weight:600;font-size:.95rem;transition:.25s;cursor:pointer;border:none}
