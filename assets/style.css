@@ -67,6 +67,8 @@ nav.scrolled .burger span{background:var(--navy)}
 .mbr{display:none}
 .hero h1 em{font-style:italic;color:var(--gold)}
 .hero p.sub{color:rgba(255,255,255,.78);font-size:1.15rem;max-width:540px;margin-bottom:24px}
+.hero-strength{color:var(--white);font-size:1.05rem;max-width:540px;margin-bottom:24px}
+.hero-strength strong{color:var(--gold)}
 .hero-note{color:rgba(255,255,255,.78);font-size:.95rem;max-width:540px;margin-bottom:32px;padding-left:18px;border-left:2px solid var(--gold)}
 .hero-note strong{color:var(--white)}
 .hero-note a{display:inline-block;color:var(--gold);text-decoration:underline;text-underline-offset:3px;margin-top:8px}
