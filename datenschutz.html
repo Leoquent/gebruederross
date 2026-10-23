@@ -195,8 +195,9 @@ footer a:hover{color:var(--gold)}
 <footer>
   <div class="container">
     <span class="logo">
-      <img src="logo-icon-clean.svg" alt="Gebrüder Ross Logo" class="logo-icon">
-      <img src="logo-text-clean.svg" alt="Gebrüder Ross" class="logo-text">
+      <!-- ⚡ BOLT OPTIMIZATION: Added lazy loading to footer logos to improve initial page load time -->
+      <img src="logo-icon-clean.svg" alt="Gebrüder Ross Logo" class="logo-icon" loading="lazy" decoding="async">
+      <img src="logo-text-clean.svg" alt="Gebrüder Ross" class="logo-text" loading="lazy" decoding="async">
     </span>
     <span>Kriegsbergstraße 30 · 70174 Stuttgart</span>
     <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span>
