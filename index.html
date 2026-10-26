@@ -387,7 +387,8 @@
   <div class="container">
     <div class="about-visual reveal">
       <div class="portrait-frame">
-        <img src="team-gebrueder-ross.webp" alt="Simon Bartosch &amp; Raphael Uhland (geb. Bartosch)" class="team-img" width="1200" height="944">
+        <!-- ⚡ Bolt Optimization: Lazy-load image below the fold to save bandwidth and improve LCP -->
+        <img src="team-gebrueder-ross.webp" alt="Simon Bartosch &amp; Raphael Uhland (geb. Bartosch)" class="team-img" width="1200" height="944" loading="lazy" decoding="async">
       </div>
       <div class="about-badge"><div class="q">„Früher haben wir uns ein <b>Kinderzimmer</b> geteilt – heute ein <b>Büro</b>.“</div></div>
     </div>
@@ -720,10 +721,6 @@
         var status = document.getElementById('f-status');
         var btn = document.getElementById('f-submit');
         var ENDPUNKT = 'https://api.lqnt.de/lead';
-        var AUSWEG = 'Das hat leider nicht geklappt. Rufen Sie uns an unter '
-          + '<a href="tel:+4971165830800" style="color:var(--navy);font-weight:600">0711 65830800</a>'
-          + ' oder schreiben Sie an '
-          + '<a href="mailto:info@gebruederross.de" style="color:var(--navy);font-weight:600">info@gebruederross.de</a>.';
         form.addEventListener('submit', function (e) {
           e.preventDefault();
           if (btn.disabled) { return; }
@@ -743,8 +740,19 @@
           }).then(function () {
             clearTimeout(abbruch);
             if (window.umami) { umami.track('formular-gesendet'); }
-            form.innerHTML = '<p style="padding:28px 0;text-align:center;font-size:1.05rem">'
-              + 'Vielen Dank für Ihre Nachricht.<br>Wir melden uns in der Regel innerhalb eines Werktages.</p>';
+
+            form.textContent = '';
+
+            var successMsg = document.createElement('p');
+            successMsg.style.padding = '28px 0';
+            successMsg.style.textAlign = 'center';
+            successMsg.style.fontSize = '1.05rem';
+
+            successMsg.textContent = 'Vielen Dank für Ihre Nachricht.';
+            successMsg.appendChild(document.createElement('br'));
+            successMsg.appendChild(document.createTextNode('Wir melden uns in der Regel innerhalb eines Werktages.'));
+
+            form.appendChild(successMsg);
           }).catch(function () {
             clearTimeout(abbruch);
             fehler();
@@ -752,7 +760,27 @@
           function fehler() {
             btn.disabled = false;
             btn.textContent = 'Nachricht absenden';
-            status.innerHTML = AUSWEG;
+
+            status.textContent = 'Das hat leider nicht geklappt. Rufen Sie uns an unter ';
+
+            var tel = document.createElement('a');
+            tel.href = 'tel:+4971165830800';
+            tel.style.color = 'var(--navy)';
+            tel.style.fontWeight = '600';
+            tel.textContent = '0711 65830800';
+            status.appendChild(tel);
+
+            status.appendChild(document.createTextNode(' oder schreiben Sie an '));
+
+            var mail = document.createElement('a');
+            mail.href = 'mailto:info@gebruederross.de';
+            mail.style.color = 'var(--navy)';
+            mail.style.fontWeight = '600';
+            mail.textContent = 'info@gebruederross.de';
+            status.appendChild(mail);
+
+            status.appendChild(document.createTextNode('.'));
+
             if (window.umami) { umami.track('formular-fehler'); }
           }
         });
@@ -765,71 +793,17 @@
 <footer>
   <div class="container">
     <span class="logo">
-      <img src="logo-icon-clean.svg" alt="Gebrüder Ross Logo" class="logo-icon">
-      <img src="logo-text-clean.svg" alt="Gebrüder Ross" class="logo-text">
+      <!-- ⚡ Bolt Optimization: Lazy-load footer images -->
+      <img src="logo-icon-clean.svg" alt="Gebrüder Ross Logo" class="logo-icon" loading="lazy" decoding="async">
+      <img src="logo-text-clean.svg" alt="Gebrüder Ross" class="logo-text" loading="lazy" decoding="async">
     </span>
     <span>Kriegsbergstraße 30 · 70174 Stuttgart</span>
     <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span>
   </div>
 </footer>
 
+<script src="/assets/main.js"></script>
 <script>
-// Nav scroll state
-const nav=document.getElementById('nav');
-addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
-// Kopfzeile auf Mobil beim Herunterscrollen ausblenden (schneidet sonst Text durch)
-let letzteY=scrollY;
-addEventListener('scroll',()=>{
-  const y=scrollY;
-  if(innerWidth>640||nav.classList.contains('menu-open')){nav.classList.remove('nav-hidden')}
-  else if(y>letzteY+8&&y>140){nav.classList.add('nav-hidden')}
-  else if(y<letzteY-8){nav.classList.remove('nav-hidden')}
-  letzteY=y;
-},{passive:true});
-// Mobile menu
-const burger=document.getElementById('burger'),links=document.getElementById('navLinks');
-burger.addEventListener('click',()=>{links.classList.toggle('open');nav.classList.toggle('menu-open')});
-links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');nav.classList.remove('menu-open')}));
-// Scroll reveal
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-// Mobile-Aufklapper: ab 641px immer offen (Desktop unverändert), darunter zu.
-// Ohne JavaScript bleibt alles offen (open im Markup) – nichts verschwindet.
-const folds=document.querySelectorAll('details.fold');
-const desktop=matchMedia('(min-width:641px)');
-function syncFolds(){folds.forEach(d=>{d.open=desktop.matches})}
-folds.forEach(d=>d.addEventListener('toggle',()=>{
-  if(d.open){d.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'))}
-}));
-desktop.addEventListener('change',syncFolds);
-addEventListener('DOMContentLoaded',syncFolds);
-addEventListener('load',syncFolds);
-syncFolds();
-
-// Leistungen: am Desktop Karten (alle offen), auf Mobil ein Akkordeon mit nur einer offenen Zeile.
-// Ohne JavaScript bleiben alle Zeilen offen und damit lesbar.
-const accs=document.querySelectorAll('details.svc-acc');
-const kannName=('name' in HTMLDetailsElement.prototype);
-function syncAcc(){
-  const mobil=!desktop.matches;
-  accs.forEach(d=>{
-    if(mobil){ if(kannName){d.setAttribute('name','leistungen')} } else { d.removeAttribute('name') }
-    d.open=!mobil;
-  });
-}
-if(!kannName){
-  accs.forEach(d=>d.addEventListener('toggle',()=>{
-    if(d.open&&!desktop.matches){accs.forEach(o=>{if(o!==d)o.open=false})}
-  }));
-}
-accs.forEach(d=>d.addEventListener('toggle',()=>{
-  if(d.open){d.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'))}
-}));
-desktop.addEventListener('change',syncAcc);
-addEventListener('DOMContentLoaded',syncAcc);
-addEventListener('load',syncAcc);
-syncAcc();
 /* FAQ: mit JavaScript eingeklappt, ohne JavaScript bleiben alle Antworten offen */
 document.querySelectorAll("details.faq-item[open]").forEach(function(d){d.removeAttribute("open")});
 </script>
