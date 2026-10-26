@@ -4,9 +4,11 @@ if (nav) {
   addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
   // Kopfzeile auf Mobil beim Herunterscrollen ausblenden (schneidet sonst Text durch)
   let letzteY=scrollY;
+  let windowWidth=innerWidth;
+  addEventListener('resize',()=>windowWidth=innerWidth,{passive:true});
   addEventListener('scroll',()=>{
     const y=scrollY;
-    if(innerWidth>640||nav.classList.contains('menu-open')){nav.classList.remove('nav-hidden')}
+    if(windowWidth>640||nav.classList.contains('menu-open')){nav.classList.remove('nav-hidden')}
     else if(y>letzteY+8&&y>140){nav.classList.add('nav-hidden')}
     else if(y<letzteY-8){nav.classList.remove('nav-hidden')}
     letzteY=y;
@@ -15,7 +17,7 @@ if (nav) {
 
 // Mobile menu
 const burger=document.getElementById('burger'),links=document.getElementById('navLinks');
-if (burger && links) {
+if (burger && links && nav) {
   burger.addEventListener('click',()=>{links.classList.toggle('open');nav.classList.toggle('menu-open')});
   links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');nav.classList.remove('menu-open')}));
 }
