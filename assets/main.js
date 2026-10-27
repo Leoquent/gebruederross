@@ -1,18 +1,38 @@
 // Nav scroll state
 const nav=document.getElementById('nav');
 if (nav) {
-  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
-  // Kopfzeile auf Mobil beim Herunterscrollen ausblenden (schneidet sonst Text durch)
-  let letzteY=scrollY;
-  let windowWidth=innerWidth;
-  addEventListener('resize',()=>windowWidth=innerWidth,{passive:true});
-  addEventListener('scroll',()=>{
-    const y=scrollY;
-    if(windowWidth>640||nav.classList.contains('menu-open')){nav.classList.remove('nav-hidden')}
-    else if(y>letzteY+8&&y>140){nav.classList.add('nav-hidden')}
-    else if(y<letzteY-8){nav.classList.remove('nav-hidden')}
-    letzteY=y;
-  },{passive:true});
+  // ⚡ Bolt Optimization: Merged separate scroll listeners and added requestAnimationFrame
+  // Throttling scroll events with requestAnimationFrame prevents layout thrashing and main thread blocking,
+  // reducing unnecessary re-renders and improving scroll performance significantly.
+  let letzteY = scrollY;
+  let windowWidth = innerWidth;
+  let scrollTicking = false;
+
+  addEventListener('resize', () => windowWidth = innerWidth, {passive: true});
+
+  addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(() => {
+        const y = scrollY;
+
+        // Handle background toggle
+        nav.classList.toggle('scrolled', y > 40);
+
+        // Kopfzeile auf Mobil beim Herunterscrollen ausblenden (schneidet sonst Text durch)
+        if (windowWidth > 640 || nav.classList.contains('menu-open')) {
+          nav.classList.remove('nav-hidden');
+        } else if (y > letzteY + 8 && y > 140) {
+          nav.classList.add('nav-hidden');
+        } else if (y < letzteY - 8) {
+          nav.classList.remove('nav-hidden');
+        }
+
+        letzteY = y;
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, {passive: true});
 }
 
 // Mobile menu
