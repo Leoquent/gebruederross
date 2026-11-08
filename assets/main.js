@@ -1,17 +1,27 @@
 // Nav scroll state
 const nav=document.getElementById('nav');
 if (nav) {
-  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
   // Kopfzeile auf Mobil beim Herunterscrollen ausblenden (schneidet sonst Text durch)
   let letzteY=scrollY;
   let windowWidth=innerWidth;
   addEventListener('resize',()=>windowWidth=innerWidth,{passive:true});
+
+  // ⚡ Bolt Optimization: Combined two scroll listeners and wrapped in requestAnimationFrame to prevent unnecessary layout recalculations and improve scroll performance.
+  let ticking = false;
   addEventListener('scroll',()=>{
-    const y=scrollY;
-    if(windowWidth>640||nav.classList.contains('menu-open')){nav.classList.remove('nav-hidden')}
-    else if(y>letzteY+8&&y>140){nav.classList.add('nav-hidden')}
-    else if(y<letzteY-8){nav.classList.remove('nav-hidden')}
-    letzteY=y;
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const y=scrollY;
+        nav.classList.toggle('scrolled',y>40);
+
+        if(windowWidth>640||nav.classList.contains('menu-open')){nav.classList.remove('nav-hidden')}
+        else if(y>letzteY+8&&y>140){nav.classList.add('nav-hidden')}
+        else if(y<letzteY-8){nav.classList.remove('nav-hidden')}
+        letzteY=y;
+        ticking = false;
+      });
+      ticking = true;
+    }
   },{passive:true});
 }
 
